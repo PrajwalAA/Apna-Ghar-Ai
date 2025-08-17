@@ -7,7 +7,7 @@ import streamlit.components.v1 as components
 # Instructions will be provided below on how to set this up.
 # For local testing, create a .streamlit/secrets.toml file in your project directory
 # with openrouter_api_key = "sk-or-v1-YOUR_OPENROUTER_API_KEY_HERE"
-API_KEY = st.secrets.get("openrouter_api_key")
+API_KEY = st.secrets.get("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")
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # --- HTML/JavaScript for Browser-based Speech-to-Text and Text-to-Speech ---
