@@ -50,7 +50,7 @@ def get_openrouter_response(api_key, messages):
 
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
-        "Authorization": f"Bearer {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}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
         "HTTP-Referer": "https://apnaghar-chatbot.streamlit.app", # Optional: Your site URL for OpenRouter rankings
         "X-Title": "Apna Ghar Chatbot", # Optional: Your site title for OpenRouter rankings
@@ -119,12 +119,9 @@ if prompt := st.chat_input("Ask about anything related to 'Apna Ghar'..."):
     ai_response = get_openrouter_response(openrouter_api_key, st.session_state.messages)
 
     # Add AI response to chat history
-    st.session_session.messages.append({"role": "assistant", "content": ai_response})
+    st.session_state.messages.append({"role": "assistant", "content": ai_response})
 
     # Display AI response
     with chat_container:
         with st.chat_message("assistant"):
             st.markdown(ai_response)
-
-    # Automatically scroll to the bottom (Streamlit handles this somewhat, but explicit refresh helps)
-    st.experimental_rerun()
