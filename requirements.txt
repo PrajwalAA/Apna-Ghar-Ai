@@ -1,2 +1,5 @@
 streamlit
 requests
+SpeechRecognition
+pyttsx3
+pyaudio
