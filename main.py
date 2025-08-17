@@ -70,10 +70,10 @@ def resolve_api_key() -> str | None:
 with st.expander("🔐 API Settings", expanded=False):
     st.write("For production, store your key in **.streamlit/secrets.toml** or set the **OPENROUTER_API_KEY** environment variable.")
     st.code(
-        '[openrouter]\napi_key = "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"',
+        '[openrouter]\napi_key = ""',
         language="toml",
     )
-    st.code('export OPENROUTER_API_KEY="sk-or-xxxxxxxxxxxxxxxxxxxxxxxx"', language="bash")
+    st.code('export OPENROUTER_API_KEY="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"', language="bash")
     manual_key = st.text_input("Or paste your OpenRouter API key here", type="password")
 
 api_key = manual_key or resolve_api_key()
@@ -187,7 +187,8 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Handle Clear
 if reset:
     st.session_state.messages = st.session_state.messages[:1]  # keep only system
-    st.rerun()
+    st.experimental_rerun()
+
 
 # Handle Send
 if send and user_prompt and user_prompt.strip():
