@@ -228,13 +228,15 @@ for message in st.session_state.messages:
 speech_input_result = components.html(
     speech_component_html,
     height=150, # Adjust height as needed to fit buttons and status
-    key="speech_input_component", # Unique key for this component to receive its value
+    # key="speech_input_component", # Removed the 'key' argument
     args={"text_to_speak": st.session_state.text_to_speak} # Pass data to JS
 )
 
 # Retrieve the value sent back by the JavaScript component
 # This value contains the recognized speech input (if any).
-speech_data = st.session_state.get("speech_input_component")
+# Note: When 'key' is removed, the return value from components.html is directly
+# the value sent from JavaScript, not accessed via st.session_state.get(key).
+speech_data = speech_input_result
 
 # Process speech input if available and it's a new, unprocessed input
 if speech_data and isinstance(speech_data, dict) and speech_data.get("type") == "speech_input":
